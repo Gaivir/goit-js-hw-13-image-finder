@@ -21,10 +21,7 @@ refs.buttonForLoad.addEventListener('click', onLoadMore);
 
 function onSearch(elm) {
     elm.preventDefault();
-    if (imgsApiService.query === "") {
-        return error({text: 'Cant find nothing. Please try again'});
-        
-    };
+  
     
     clearImagesContainer();
 
@@ -33,7 +30,10 @@ function onSearch(elm) {
     imgsApiService.featchImages().then(appendImagesMarkup);
     
     
-  
+    if (imgsApiService.query === '') {
+       return error({ text: 'Cant find nothing. Please try again' });
+        
+    };
     }
 
 function onLoadMore() {
