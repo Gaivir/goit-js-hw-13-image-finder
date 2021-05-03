@@ -1,7 +1,7 @@
 import './styles.css';
 import getRefs from './js/get-refs';
 import imgCardTpl from './templates/img-card.hbs';
-import ImgsApiService from './js/fetch-imgs';
+import ImgsApiService from './js/apiService';
 import { error } from './js/notofications';
 
 
