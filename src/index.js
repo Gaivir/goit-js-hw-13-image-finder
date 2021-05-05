@@ -32,14 +32,14 @@ function onSearch(elm) {
     clearImagesContainer();
 
     if (imgsApiService.query === '') {
-      return error({ text: 'Cant find nothing. Please try again' });  
+       error({ text: 'Cant find nothing. Please try again' });
+         loadMoreBtn.hide();
+        return 
     };
     
     loadMoreBtn.show();
     imgsApiService.resetPage();
-    
     fechImgs();
-    
     }
 
 
