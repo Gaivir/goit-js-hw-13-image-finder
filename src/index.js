@@ -29,15 +29,15 @@ function onSearch(elm) {
     elm.preventDefault();
 
     imgsApiService.query = elm.currentTarget.elements.query.value;
-   
-    
+    clearImagesContainer();
+
     if (imgsApiService.query === '') {
       return error({ text: 'Cant find nothing. Please try again' });  
     };
     
     loadMoreBtn.show();
     imgsApiService.resetPage();
-     clearImagesContainer();
+    
     fechImgs();
     
     }
