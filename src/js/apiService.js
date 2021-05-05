@@ -4,7 +4,7 @@ const BASE_URL = 'https://pixabay.com';
 export default class ImgsApiService {
     constructor() {
         this.searchQuery = "";
-        this.page = 1;
+        this.page = 1;  
     }
 
 
@@ -13,7 +13,7 @@ export default class ImgsApiService {
     return fetch(`${BASE_URL}/api/?key=${API_KEY}&image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12`)
             .then(response => response.json())
         .then(({ hits }) => {
-           
+        
         this.incrementPage();
                 return hits;
              });
