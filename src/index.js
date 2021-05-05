@@ -2,44 +2,55 @@ import './styles.css';
 import getRefs from './js/get-refs';
 import imgCardTpl from './templates/img-card.hbs';
 import ImgsApiService from './js/apiService';
+import LoadMoreBtn from './js/load-more-btn';
 import { error } from './js/notofications';
-
-
-
-
+import './js/pnotify';
 
 
 const refs = getRefs();
 
 const imgsApiService = new ImgsApiService();
+const loadMoreBtn = new LoadMoreBtn({
+    selector: '[data-action="load-more"]',
+    hidden: true,
+});
+console.log(loadMoreBtn);
+
+
+
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.buttonForLoad.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.button.addEventListener('click', fechImgs);
 
 
 
 
 function onSearch(elm) {
     elm.preventDefault();
-  
-    
-    clearImagesContainer();
 
     imgsApiService.query = elm.currentTarget.elements.query.value;
-    imgsApiService.resetPage();
-    imgsApiService.featchImages().then(appendImagesMarkup);
-    
+   
     
     if (imgsApiService.query === '') {
-       return error({ text: 'Cant find nothing. Please try again' });
-        
+      return error({ text: 'Cant find nothing. Please try again' });  
     };
+    
+    loadMoreBtn.show();
+    imgsApiService.resetPage();
+     clearImagesContainer();
+    fechImgs();
+    
     }
 
-function onLoadMore() {
-     imgsApiService.featchImages().then(appendImagesMarkup);
-}
 
+
+function fechImgs() {
+    loadMoreBtn.disable();
+    imgsApiService.featchImages().then(hits => {
+        appendImagesMarkup(hits);
+        loadMoreBtn.enable();
+    });
+}
 
 function appendImagesMarkup(hits) {
     refs.galleryList.insertAdjacentHTML('beforeend', imgCardTpl(hits));
@@ -53,4 +64,6 @@ function appendImagesMarkup(hits) {
 function clearImagesContainer() {
     refs.galleryList.innerHTML = "";
 }
+
+
 

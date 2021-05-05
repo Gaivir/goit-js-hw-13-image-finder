@@ -29,10 +29,27 @@ body {
 }
 
 .button {
-  width: 100px;
-  height: 30px;
-  background-color: rgb(211, 150, 139);
-  border-radius: 10%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 200px;
+  background-color: rgb(0, 162, 255);
+  border-radius: 5%;
+  border: none;
+  height: 40px;
+}
+
+.button.is-hidden {
+  display: none;
+}
+
+.button > .spinner.is-hidden {
+  display: none;
+}
+
+.label {
+  color: white;
+  font-size: 16px;
 }
 
 .input-form {
