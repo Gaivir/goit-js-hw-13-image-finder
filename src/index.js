@@ -31,7 +31,7 @@ function onSearch(elm) {
     imgsApiService.query = elm.currentTarget.elements.query.value;
     clearImagesContainer();
 
-    if (imgsApiService.query === ' '|| imgsApiService.query === '') {
+    if (imgsApiService.query.trim() === '')  {
        error({ text: 'Cant find nothing. Please try again' });
          loadMoreBtn.hide();
         return 

@@ -4,7 +4,8 @@ const BASE_URL = 'https://pixabay.com';
 export default class ImgsApiService {
     constructor() {
         this.searchQuery = "";
-        this.page = 1;  
+        this.page = 1;
+       
     }
 
 
